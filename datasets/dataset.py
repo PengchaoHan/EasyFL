@@ -39,6 +39,10 @@ def get_data_info(dataset, model_name):
         img_size = 84
         channels = 3
         num_classes = 2
+    elif dataset == 'shakespeare':
+        img_size = 80
+        channels = None
+        num_classes = 80
     else:
         raise Exception('Unknown dataset name.')
     return img_size, channels, num_classes
@@ -143,6 +147,14 @@ def load_data(dataset, data_path, model_name):
 
         data_train = CelebA(data_path + '/celeba/', transform=transform, train=True, read_all_data_to_mem=False)
         data_test = CelebA(data_path + '/celeba/', transform=transform,  train=False, read_all_data_to_mem=False)
+
+    elif dataset == 'shakespeare':
+        from datasets.shakespeare import SHAKESPEARE
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+        ])
+        data_train = SHAKESPEARE(data_path + '/shakespeare/', transform=transform, train=True)
+        data_test = SHAKESPEARE(data_path + '/shakespeare/', transform=transform, train=False)
 
     else:
         raise Exception('Unknown dataset name.')

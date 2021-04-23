@@ -3,7 +3,7 @@
 from torch.utils.data import Dataset,DataLoader
 from config import *
 from datasets.dataset import *
-from models.get_model import get_model
+from models.get_model import get_model, adjust_learning_rate
 from statistic.collect_stat import CollectStatistics
 from util.sampling import split_data
 import numpy as np
@@ -52,6 +52,9 @@ last_output = 0
 
 while True:
     w_global_prev = copy.deepcopy(w_global)
+    if n_nodes_in_each_round > n_nodes:
+        print("Warning: Not enough nodes for each round! set to all nodes.")
+        n_nodes_in_each_round = n_nodes
     if random_node_selection:
         node_subset = np.random.choice(range(n_nodes), n_nodes_in_each_round, replace=False)
     else:
@@ -61,6 +64,8 @@ while True:
     for n in node_subset:
         model.assign_weight(w_global)
         # model.train_one_epoch(train_loader_list[n], device)
+        if dataset == 'shakespeare':
+            adjust_learning_rate(model.optimizer, num_iter, step_size)
         model.model.train()
         for i in range(0, tau_setup):
             try:

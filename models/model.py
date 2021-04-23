@@ -45,13 +45,20 @@ class Models():
         elif model_name == 'ModelCNNCeleba':
             from models.cnn_celeba import ModelCNNCeleba
             self.model = ModelCNNCeleba().to(device)
+        elif model_name == 'ModelLSTMShakespeare':
+            from models.lstm_shakespeare import ModelLSTMShakespeare
+            self.model = ModelLSTMShakespeare().to(device)
         elif model_name == 'LeNet5':
             self.model = LeNet5()
             # self.optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate)  # lr 0.001
         elif model_name == 'ResNet34':
+            # import torchvision.models as models
+            # self.model = models.resnet34(pretrained=False)  # outpu_feature=1000
             self.model = ResNet34(num_classes=num_classes)
             # self.optimizer = torch.optim.SGD(self.model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)  # lr 0.1 adjustable
         elif model_name == 'ResNet18':
+            # import torchvision.models as models
+            # self.model = models.resnet18(pretrained=False)  # outpu_feature=1000
             self.model = ResNet18(num_classes=num_classes)
             # self.optimizer = torch.optim.SGD(self.model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=5e-4)
         elif model_name == 'WResNet40-2':

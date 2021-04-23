@@ -153,5 +153,6 @@ def process_x(raw_x_batch):
     return x_batch
 
 def process_y(raw_y_batch):
-    y_batch = [letter_to_vec(c) for c in raw_y_batch]
+    y_batch = [word_to_indices(c) for c in raw_y_batch]  # to indices
+    # y_batch = [letter_to_vec(c) for c in raw_y_batch]  # to one-hot
     return y_batch

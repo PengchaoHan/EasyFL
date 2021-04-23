@@ -16,6 +16,8 @@ For FEMNIST, manually download the dataset as instructed in <https://github.com/
 For CelebA, manually download the celebrity faces dataset img_align_celeba.zip from <http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html>, extract the files, and place the standalone .jpg files into `dataset_data_files/celeba/raw/img_align_celeba`.
 Then, manually download the train and test files extended by .json as instructed by <https://github.com/TalwalkarLab/leaf> and put them into `dataset_data_files/celeba/train` and `dataset_data_files/celeba/test` respectively.
 
+For Shakespeare, manually download the dataset as instructed in <https://github.com/TalwalkarLab/leaf> and put the train and test datasets extended by .json into `dataset_data_files/shakespeare/train` and `dataset_data_files/shakespeare/test` respectively.
+
 To test the code: 
 
 ```

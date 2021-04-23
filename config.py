@@ -29,15 +29,18 @@ model_name = 'ModelCNNEmnistLeaf'
 # dataset = 'celeba'
 # model_name = 'ModelCNNCeleba'
 
+# dataset = 'shakespeare'
+# model_name = 'ModelLSTMShakespeare'
+
 dataset_file_path = os.path.join(os.path.dirname(__file__), 'dataset_data_files')
 results_file_path = os.path.join(os.path.dirname(__file__), 'results/')
 comments = dataset + "-" + model_name
 fl_results_file_path = os.path.join(results_file_path, 'rst_' + comments + '.csv')
 
 # ----------------------settings for clients
-n_nodes = None  # None for fmnist and celeba, set a number for others
+n_nodes = None  # None for fmnist, celeba, and shakespeare, set a number for others
 n_nodes_in_each_round = 10
-step_size = 0.01  # learning rate of clients
+step_size = 0.01  # learning rate of clients, 0.8 for shakespeare, 0.01 for others
 batch_size_train = 32
 batch_size_eval = 256
 max_iter = 100000  # Maximum number of iterations to run

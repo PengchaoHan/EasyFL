@@ -17,11 +17,16 @@ class TestDataset(unittest.TestCase):
             self.assertEqual(len(data_train), num_samples_to_read_train)
             self.assertEqual(len(data_test), num_samples_to_read_test)
         data_loader = DataLoader(data_train, batch_size=1, shuffle=False, num_workers=0)
-        for i, (images, labels) in enumerate(data_loader):
-            self.assertEqual(len(images[0]), dim_channel)
-            self.assertEqual(len(images[0][0]), dim_x)
-            self.assertEqual(len(images[0][0][0]), dim_y)
-            break
+        if dataset == 'shakespeare':
+            for i, (images, labels) in enumerate(data_loader):
+                self.assertEqual(len(images[0]), dim_x)
+                break
+        else:
+            for i, (images, labels) in enumerate(data_loader):
+                self.assertEqual(len(images[0]), dim_channel)
+                self.assertEqual(len(images[0][0]), dim_x)
+                self.assertEqual(len(images[0][0][0]), dim_y)
+                break
 
     def test_mnist_load_data(self):
         self.load_data_common('MNIST', dataset_file_path, 'ModelCNNMnist', 60000, 10000, 28, 28, 1)
@@ -41,6 +46,9 @@ class TestDataset(unittest.TestCase):
 
     def test_celeba_load_data(self):
         self.load_data_common('celeba', dataset_file_path,  'ModelCNNCeleba', -1, -1, 84, 84, 3)
+
+    def test_shakespeare_load_data(self):
+        self.load_data_common('shakespeare', dataset_file_path,  'ModelLSTMShakespeare', -1, -1, 80, -1, -1)
 
 if __name__ == '__main__':
     unittest.main()

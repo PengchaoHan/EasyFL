@@ -52,6 +52,9 @@ class TestModel(unittest.TestCase):
     def test_celeba_run_model(self):
         self.run_model_common('celeba', dataset_file_path,  'ModelCNNCeleba', 2)
 
+    def test_shakespeare_run_model(self):
+        self.run_model_common('shakespeare', dataset_file_path, 'ModelLSTMShakespeare', 80)
+
 
 if __name__ == '__main__':
     unittest.main()
